@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.img {
+  height: 200px;
+}
+
+iframe {
+  border: 1px solid black;
+}

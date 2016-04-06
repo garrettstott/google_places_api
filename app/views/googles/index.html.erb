@@ -1,2 +1,37 @@
-<h1>Googles#index</h1>
-<p>Find me in app/views/googles/index.html.erb</p>
+
+  <h2><%= @spots.name %></h2>
+  <% if @spots.photos.blank? %>
+    <img src="http://adiava.com/uploads/images/restaurant_default.png" />
+  <% else %>
+    <% src = @spots.photos.first.fetch_url(800) %>
+    <img src=<%= src %>, class='img' />
+  <% end %>
+  <% if @spots.opening_hours.blank? %>
+    <h4>Hours: Not Listed</h4>
+  <% else %>
+    <% open = @spots.opening_hours.to_hash %>
+    <% if open["open_now"] %>
+      <h4>Open Now!</h4>
+    <% else %>
+      <h4>Closed!</h4>
+    <% end %>
+  <% end %>
+  <h4>Price Level: <% if @spots.price_level %>
+                      <%= @spots.price_level %>
+                    <% else %>
+                      Not Listed
+                    <% end %>
+  </h4>
+  <h4>Rating: <% if @spots.rating %>
+                <%= @spots.rating %>
+              <% else %>
+                Not Listed
+              <% end %>
+  </h4>
+  <h4><%= @spots.vicinity %></h4>
+  <iframe width="500" height="270" 
+    frameborder="0" scrolling="no" 
+    marginheight="0" marginwidth="0" 
+    src="https://maps.google.com/maps?q=+<%= @spots.lat %>+,+<%= @spots.lng %>+&hl=es;z=14&amp;output=embed">
+  </iframe>
+
